@@ -1,12 +1,12 @@
 package com.metodologia.model;
 
-public class MergeSortImpl {
+public class MergeSortImpl<T extends Comparable<T>> {
 
-	public void sort(String[] array) {
+	public void sort(T [] array) {
 		sort(array, 0, array.length-1);
 	}
 
-	private void sort(String[] array, int left, int right){
+	private void sort(T[] array, int left, int right){
 		if (left < right){
 			int middle = left + (right - left)/2;
 
@@ -16,8 +16,8 @@ public class MergeSortImpl {
 		}
 	}
 
-	public void merge(String[] array, int left, int middle, int right) {
-		String[] arrayAux = new String[array.length];
+	public void merge(T[] array, int left, int middle, int right) {
+		T[] arrayAux = (T[]) new Comparable[array.length];
 
 		for (int i = left; i <= right; i++) {
 			arrayAux[i] = array[i];
