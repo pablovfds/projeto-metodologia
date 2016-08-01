@@ -5,16 +5,16 @@ while getopts a:i:o: OPCAO; do
      	a) ALGORITHM=${OPTARG} ;;
         i) INPUTFILE=${OPTARG} ;;
         o) OUTPUTFILE=${OPTARG} ;;
-        ?) echo "Algo de errado aconteceu aqui. =( . Por favor leia o arquivo README."; exit 1; ;;
+        ?) echo "Por favor leia o arquivo README."; exit 1; ;;
      esac
  done
-
-if [ -z $ALGORITHM ]
+  
+if [ -z $ALGORITHM ] 
 then
 	echo "Valor do algoritmo invalido. Leia o arquivo README."
 	exit
-fi
-
+fi 
+  
 # --- Clean
 rm -rf ./bin/*
 
@@ -24,10 +24,10 @@ javac -d ./bin ./src/*/*.java
 echo "Arquivos compilados"
 
 # --- Run
-if [ ! -z $INPUTFILE ]
+if [ ! -z $INPUTFILE ] 
 then
 	if [ ! -f $INPUTFILE ]
-	then
+	then 
 		echo "Arquivo de entrada nao existe."
 		exit
 	fi
@@ -36,19 +36,25 @@ fi
 
 #cd bin
 echo $INPUTFILE $OUTPUTFILE
-case $ALGORITHM in
+case $ALGORITHM in 
 1)
-    echo "Algoritmo paralelo"
-	java -cp bin/ model/RunnerAlgotithm par $INPUTFILE $OUTPUTFILE
-    echo "Processo finalizado"
+    echo "Rodando algoritmo paralelo"
+	java -cp bin/ algotithm/RunnerAlgorithm par $INPUTFILE $OUTPUTFILE
+    echo "Algoritmo finalizado"
 ;;
 2)
-    echo "Algoritmo sequencial"
-	java -cp bin/ model/RunnerAlgotithm seq $INPUTFILE $OUTPUTFILE
-    echo "Processo finalizado"
+    echo "Rodando algoritmo sequencial"
+	java -cp bin/ algotithm/RunnerAlgorithm heap $INPUTFILE $OUTPUTFILE
+    echo "Algoritmo finalizado"
 ;;
 *)
-	echo "Algo errado aconteceu. Por favor, abra o arquivo README e verifique."
+	echo "Algo errado aconteceu. Por favor, abra o arquivo README e verifique." 
 	exit
 ;;
 esac
+
+#if [ ! -z $OUTPUTFILE ] 
+#then
+#	cp $OUTPUTFILE ../
+#   rm $OUTPUTFILE
+#fi
