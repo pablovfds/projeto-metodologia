@@ -1,48 +1,51 @@
 package algotithm;
 
-public class MergeSortImpl<T extends Comparable<T>> {
+public class MergeSortImpl {
 
-	public void sort(T [] array) {
-		sort(array, 0, array.length-1);
+	public void sort(String[] array) {
+		sort(2, array, 0, array.length);
 	}
 
-	private void sort(T[] array, int left, int right){
-		if (left < right){
-			int middle = left + (right - left)/2;
+	private void sort(int qnt_threads, String[] strings, int begin, int right) {
 
-			sort(array, left, middle);
-			sort(array, middle+1, right);
-			merge(array, left, middle, right);
-		}
-	}
+		if (right > 1) {
 
-	public void merge(T[] array, int left, int middle, int right) {
-		@SuppressWarnings("unchecked")
-		T[] arrayAux = (T[]) new Comparable[array.length];
+			if (qnt_threads > 0) {
+				Thread thread1 = new Thread(() -> {
 
-		for (int i = left; i <= right; i++) {
-			arrayAux[i] = array[i];
-		}
+				});
+				Thread thread2 = new Thread(() -> {
+				});
 
-		int left1 = left;
-		int middleAux = middle + 1;
-		int left2 = left;
-
-		while (left1 <= middle && middleAux <= right) {
-			if (arrayAux[left1].compareTo(arrayAux[middleAux])<=0) {
-				array[left2] = arrayAux[left1];
-				left1++;
+				thread1.run();
+				thread2.run();
 			} else {
-				array[left2] = arrayAux[middleAux];
-				middleAux++;
 			}
-			left2++;
+
+		}
+	}
+
+	private void merge(String[] strings, int begin, int num1, int num2) {
+		String[] temp = new String[num1 + num2];
+		int k = 0;
+		int copy1 = 0;
+		int copy2 = 0;
+		int i;
+
+
+		while ((copy1 < num1) && (copy2 < num2)) {
+			if (strings[begin + copy1].compareTo(strings[begin + num1 + copy2]) < 0)
+				temp[k++] = strings[begin + (copy1++)];
+			else
+				temp[k++] = strings[begin + num1 + (copy2++)];
 		}
 
-		while (left1 <= middle) {
-			array[left2] = arrayAux[left1];
-			left2++;
-			left1++;
-		}
+		while (copy1 < num1)
+			temp[k++] = strings[begin + (copy1++)];
+		while (copy2 < num2)
+			temp[k++] = strings[begin + num1 + (copy2++)];
+
+		for (i = 0; i < num1 + num2; i++)
+			strings[begin + i] = temp[i];
 	}
 }

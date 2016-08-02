@@ -28,7 +28,7 @@ public class RunnerAlgorithm {
 				break;
 			case "par":
 
-				MergeSortImpl<String> mergeSort = new MergeSortImpl<String>();
+				MergeSortImpl mergeSort = new MergeSortImpl();
 				mergeSort.sort(dataInput);
 
 				writerFile.writeLines(dataInput);
