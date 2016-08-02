@@ -5,13 +5,13 @@ while getopts a:i:o: OPCAO; do
      	a) ALGORITHM=${OPTARG} ;;
         i) INPUTFILE=${OPTARG} ;;
         o) OUTPUTFILE=${OPTARG} ;;
-        ?) echo "Por favor leia o arquivo README."; exit 1; ;;
+        ?) echo "Please read the file README.md"; exit 1; ;;
      esac
  done
   
 if [ -z $ALGORITHM ] 
 then
-	echo "Valor do algoritmo invalido. Leia o arquivo README."
+	echo "Value invalid algorithm. Read the file README.md"
 	exit
 fi 
   
@@ -19,16 +19,16 @@ fi
 rm -rf ./bin/*
 
 # --- Build
-echo "Compilando arquivos"
+echo "Compiling files..."
 javac -d ./bin ./src/*/*.java
-echo "Arquivos compilados"
+echo "Compiled files"
 
 # --- Run
 if [ ! -z $INPUTFILE ] 
 then
 	if [ ! -f $INPUTFILE ]
 	then 
-		echo "Arquivo de entrada nao existe."
+		echo "Input file does not exist"
 		exit
 	fi
 	#cp -R $INPUTFILE bin/
@@ -38,23 +38,17 @@ fi
 echo $INPUTFILE $OUTPUTFILE
 case $ALGORITHM in 
 1)
-    echo "Rodando algoritmo paralelo"
+    echo "Running parallel algorithm..."
 	java -cp bin/ algotithm/RunnerAlgorithm par $INPUTFILE $OUTPUTFILE
-    echo "Algoritmo finalizado"
+    echo "Algorithm finalized" 
 ;;
 2)
-    echo "Rodando algoritmo sequencial"
+    echo "Running sequential algorithm..."
 	java -cp bin/ algotithm/RunnerAlgorithm heap $INPUTFILE $OUTPUTFILE
-    echo "Algoritmo finalizado"
+    echo "Algorithm finalized"
 ;;
 *)
-	echo "Algo errado aconteceu. Por favor, abra o arquivo README e verifique." 
+	echo "Something wrong happened. Please open the README.md file and check." 
 	exit
 ;;
 esac
-
-#if [ ! -z $OUTPUTFILE ] 
-#then
-#	cp $OUTPUTFILE ../
-#   rm $OUTPUTFILE
-#fi
