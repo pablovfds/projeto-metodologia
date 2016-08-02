@@ -7,21 +7,30 @@ public class MergeSortImpl {
 	}
 
 	private void sort(int qnt_threads, String[] strings, int begin, int right) {
+		int num1;
+		int num2;
 
 		if (right > 1) {
+			num1 = right / 2;
+			num2 = right - num1;
 
 			if (qnt_threads > 0) {
 				Thread thread1 = new Thread(() -> {
+					sort(qnt_threads - 2, strings, begin, num1);
 
 				});
 				Thread thread2 = new Thread(() -> {
+					sort(qnt_threads - 2, strings, begin + num1, num2);
 				});
 
 				thread1.run();
 				thread2.run();
 			} else {
+				sort(0, strings, begin, num1);
+				sort(0, strings, begin + num1, num2);
 			}
 
+			merge(strings, begin, num1, num2);
 		}
 	}
 
