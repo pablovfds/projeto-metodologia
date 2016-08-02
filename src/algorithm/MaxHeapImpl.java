@@ -1,4 +1,4 @@
-package algotithm;
+package algorithm;
 
 public class MaxHeapImpl<T extends Comparable<T>> implements MaxHeap<T> {
 	private Integer sizeHeap;

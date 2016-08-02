@@ -1,4 +1,4 @@
-package algotithm;
+package algorithm;
 
 public interface GenericHeap<T extends Comparable<T>> {
 

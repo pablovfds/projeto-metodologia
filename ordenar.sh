@@ -39,12 +39,12 @@ echo $INPUTFILE $OUTPUTFILE
 case $ALGORITHM in 
 1)
     echo "Running parallel algorithm..."
-	java -cp bin/ algotithm/RunnerAlgorithm par $INPUTFILE $OUTPUTFILE
+	java -cp bin/ algorithm/RunnerAlgorithm par $INPUTFILE $OUTPUTFILE
     echo "Algorithm finalized" 
 ;;
 2)
     echo "Running sequential algorithm..."
-	java -cp bin/ algotithm/RunnerAlgorithm heap $INPUTFILE $OUTPUTFILE
+	java -cp bin/ algorithm/RunnerAlgorithm heap $INPUTFILE $OUTPUTFILE
     echo "Algorithm finalized"
 ;;
 *)

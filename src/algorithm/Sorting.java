@@ -1,4 +1,4 @@
-package algotithm;
+package algorithm;
 
 /**
  *The interface of all sorting algorithms. It contains only the signature of the sort method.  

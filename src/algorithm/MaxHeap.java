@@ -1,4 +1,4 @@
-package algotithm;
+package algorithm;
 
 public interface MaxHeap<T extends Comparable<T>> extends GenericHeap<T> {
 
